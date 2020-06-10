@@ -1,10 +1,11 @@
-from theApp import create_app
+# from theApp import create_app
+from theApp import app
 import os
 
-app = create_app()
+# app = create_app()
 
 if __name__ == '__main__':
-    app.run(debug=False, port=os.environ.get('PORT') or 5000)
+    app.run(debug=False, port=os.environ.get('DATABASE_URL') or 5000)
 
 
 '''
