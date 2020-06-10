@@ -1,2 +1,2 @@
-web: gunicorn theApp:app
+web: gunicorn theApp:create_app
 
