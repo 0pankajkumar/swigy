@@ -4,7 +4,7 @@ from theApp.trimmer.utils import insertUrl, findUrl
 
 trimmer = Blueprint('trimmer', __name__, template_folder='templates', static_folder="static")
 
-domain = "swi.gy/"
+domain = "https://swigy-shortner.herokuapp.com/"
 
 @trimmer.route("/trimit", methods=['POST'])
 def trimmerFunction():
