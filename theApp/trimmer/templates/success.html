@@ -1,0 +1,61 @@
+{% extends "cover.html" %}
+
+WE are suceess
+{% block success %}
+
+<main>
+<section id="content">
+<h1>Your shortened URL</h1>
+<p>Copy the shortened link and share it in messages, texts, posts, websites and other locations.</p>
+</section>
+<script type="text/javascript">
+  var clipboard = new Clipboard('.copy');
+  </script>
+<script type="text/javascript">
+      function toggle_visibility(id) {
+      	var copyText = document.getElementById("shortenurl");
+	    copyText.select();
+	    copyText.setSelectionRange(0, 99999)
+	    document.execCommand("copy");
+	    alert("Copied the text: " + copyText.value);
+      	
+      	
+         var e = document.getElementById(id);
+         if(e.style.display == "none")
+            e.style.display = "table";
+         //else
+            //e.style.display = "none";
+      }
+  </script>
+<section id="urlbox">
+<br><br>
+<div id="formurl" style="max-width: 400px;">
+<input id="shortenurl" type="text" value={{shortUrl}} onClick="this.select();">
+<div id="formbutton">
+<input type="button" data-clipboard-target="#shortenurl" class="copy" value="Copy URL" onclick="toggle_visibility('balloon');">
+</div>
+</div>
+<div id="formurl" style="max-width: 400px; display: block;">
+<div id="balloon" style="display: none;">URL Copied</div>
+</div>
+<p class="boxtextleft">Long URL: <a href={longUrl} target="_blank">{{longUrl}}</a><br><br>
+
+Track <a href="url-total-clicks?url=shorturl.at/gjnS3">the total of clicks</a> in real-time from your shortened URL.<br>
+Create other <a href="/">shortened URL</a>.
+</p>
+</section>
+<section id="content">
+<h2>Share URL</h2>
+<div class="socialnetworkbox">
+<p>
+<a class="snb snbfacebook" href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{shortUrl}}', 'facebook', 'width=800, height=600, resizable, scrollbars=yes, status=1'); return false;">Facebook</a>
+<a class="snb snbtwitter" href="#" onclick=" window.open('https://twitter.com/share?url={{shortUrl}}', 'twitter', 'width=800, height=600, resizable, scrollbars=yes, status=1'); return false;">Twitter</a>
+<a class="snb snbpinterest" href="#" onclick="window.open('https://pinterest.com/pin/create/link/?url={{shortUrl}}', 'pinterest', 'width=800, height=600, resizable, scrollbars=yes, status=1'); return false;">Pinterest</a>
+<a class="snb snbtumblr" href="#" onclick="window.open('https://www.tumblr.com/share/link?url={{shortUrl}}', 'tumblr', 'width=800, height=600, resizable, scrollbars=yes, status=1'); return false;">Tumblr</a>
+<a class="snb snbwhatsapp" href="whatsapp://send?text={{shortUrl}}">WhatsApp</a>
+</p>
+</div>
+</section>
+</main>
+
+{% endblock %}

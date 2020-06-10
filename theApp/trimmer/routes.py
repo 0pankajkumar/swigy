@@ -2,20 +2,22 @@ from flask import (render_template, redirect, request, Blueprint)
 
 from theApp.trimmer.utils import insertUrl, findUrl
 
-trimmer = Blueprint('trimmer', __name__, template_folder='templates')
+trimmer = Blueprint('trimmer', __name__, template_folder='templates', static_folder="static")
 
+domain = "swi.gy/"
 
-@trimmer.route("/trimit", methods=['GET'])
+@trimmer.route("/trimit", methods=['POST'])
 def trimmerFunction():
-    longUrl = request.args.get('url')
+    longUrl = request.form.get('url')
     if longUrl:
         ans = insertUrl(longUrl)
         if ans:
-            return "www.swi.gy/" + ans
+            print("We are returning success.html now")
+            return render_template('success.html', shortUrl = domain+ans, longUrl = longUrl) # "www.swi.gy/" + ans
         else:
-            return redirect('http://www.google.com', code=302)    
+            return render_template('failure.html', longUrl = longUrl)    
     else:
-        return redirect('http://www.google.com', code=302)
+        return render_template('failure.html') 
 
 
 @trimmer.route("/<shortCode>", methods=['GET'])
@@ -30,5 +32,5 @@ def expanderFunction(shortCode):
 
 @trimmer.route("/", methods=['GET'])
 def home():
-    return render_template('cover.html')
+    return render_template('start_form.html')
 
