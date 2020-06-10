@@ -27,7 +27,7 @@ def expanderFunction(shortCode):
     if ans:
         return redirect(f'https://duckduckgo.com/?q={ans}', code=302)
     else:
-        return "Does not exist"
+        return render_template('notFound.html')
     # return f"shortCode is {shortCode}"
 
 @trimmer.route("/", methods=['GET'])
