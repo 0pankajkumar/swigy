@@ -4,7 +4,7 @@ from theApp.trimmer.utils import insertUrl, findUrl
 
 trimmer = Blueprint('trimmer', __name__, template_folder='templates', static_folder="static")
 
-domain = "https://swigy-shortner.herokuapp.com/"
+domain = "phew.link/"
 
 @trimmer.route("/trimit", methods=['POST'])
 def trimmerFunction():
@@ -25,7 +25,7 @@ def expanderFunction(shortCode):
     print(f"Received {shortCode} for redirecting")
     ans = findUrl(shortCode)
     if ans:
-        return redirect(f'https://duckduckgo.com/?q={ans}', code=302)
+        return redirect(ans, code=302)
     else:
         return render_template('notFound.html')
     # return f"shortCode is {shortCode}"
